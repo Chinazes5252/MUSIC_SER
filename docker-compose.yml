@@ -29,8 +29,3 @@ services:
     networks:
       - dev
 
-  frontend:
-    build:
-      context: ./frontend
-    networks:
-      - dev
