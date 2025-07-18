@@ -1,0 +1,249 @@
+:root {
+  --primary: #1DB954;
+  --background: #121212;
+  --surface: rgba(255, 255, 255, 0.08);
+  --text-primary: #fff;
+  --text-secondary: #aaa;
+}
+
+body {
+  background: var(--background);
+  color: var(--text-primary);
+  font-family: 'Roboto', sans-serif;
+  min-height: 100vh;
+  margin: 0;
+  padding: 1rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.glass-container {
+  background: var(--surface);
+  backdrop-filter: blur(16px);
+  border-radius: 1.5rem;
+  padding: 2rem;
+  width: 100%;
+  max-width: 800px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+}
+
+.header {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.logo {
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
+  background: linear-gradient(45deg, #1DB954, #1ED760);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.search-box {
+  display: flex;
+  gap: 0.5rem;
+  margin-bottom: 2rem;
+}
+
+#search-input {
+  flex: 1;
+  padding: 1rem;
+  border: none;
+  border-radius: 2rem;
+  background: rgba(255, 255, 255, 0.1);
+  color: var(--text-primary);
+  font-size: 1rem;
+}
+
+#search-btn {
+  padding: 1rem 2rem;
+  border: none;
+  border-radius: 2rem;
+  background: var(--primary);
+  color: white;
+  cursor: pointer;
+  transition: opacity 0.3s;
+}
+
+#search-btn:hover {
+  opacity: 0.9;
+}
+
+.track-list {
+  display: grid;
+  gap: 1rem;
+  margin-top: 2rem;
+}
+
+.track-card {
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 1rem;
+  padding: 1rem;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  cursor: pointer;
+  transition: transform 0.3s;
+}
+
+.track-card:hover {
+  transform: translateY(-3px);
+}
+
+.track-image {
+  width: 60px;
+  height: 60px;
+  border-radius: 8px;
+  object-fit: cover;
+}
+
+.player {
+  margin-top: 2rem;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 1rem;
+  padding: 1rem;
+  opacity: 0;
+  transform: translateY(20px);
+  transition: all 0.3s ease;
+}
+
+.player.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.controls {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  margin: 1rem 0;
+}
+
+.control-btn {
+  background: none;
+  border: none;
+  color: white;
+  font-size: 1.5rem;
+  cursor: pointer;
+  padding: 0.5rem;
+  transition: transform 0.3s;
+}
+
+.control-btn:hover {
+  transform: scale(1.1);
+}
+
+#progress {
+  width: 100%;
+  height: 4px;
+  margin-top: 1rem;
+}
+
+#now-playing {
+  text-align: center;
+  margin-bottom: 1rem;
+  font-weight: bold;
+}
+
+.loader {
+  border: 4px solid rgba(255, 255, 255, 0.3);
+  border-top: 4px solid var(--primary);
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  animation: spin 1s linear infinite;
+  margin: 2rem auto;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+.hidden {
+  display: none;
+}
+
+.error-message, .notification {
+  position: fixed;
+  top: 1rem;
+  left: 50%;
+  transform: translateX(-50%);
+  padding: 1rem 2rem;
+  border-radius: 2rem;
+  z-index: 1000;
+}
+
+.error-message {
+  background: #ff4444;
+}
+
+.notification {
+  background: var(--primary);
+}
+
+@media (max-width: 768px) {
+  .glass-container {
+      padding: 1rem;
+      border-radius: 1rem;
+  }
+  
+  .logo {
+      font-size: 2rem;
+  }
+  
+  #search-btn {
+      padding: 0.75rem 1.5rem;
+  }
+}
+
+.loading {
+  cursor: wait !important;
+}
+
+.loading::after {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0,0,0,0.5);
+  z-index: 9999;
+}
+
+.save-btn {
+  background: var(--primary);
+  border: none;
+  padding: 8px 16px;
+  border-radius: 20px;
+  cursor: pointer;
+  transition: transform 0.2s;
+}
+
+.save-btn:hover {
+  transform: scale(1.05);
+}
+
+.track-card {
+  position: relative;
+  overflow: hidden;
+}
+
+.track-card::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(45deg, #1db95433, #1ed76033);
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+
+.track-card:hover::before {
+  opacity: 1;
+}
