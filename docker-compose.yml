@@ -5,10 +5,12 @@ networks:
 
 services:
   nginx:
-    image: nginx:stable-alpine  # Используем готовый образ nginx
+    build:
+      context: ./nginx
+      dockerfile: Dockerfile  # <-- Вложен корректно
     volumes:
       - ./nginx.conf:/etc/nginx/nginx.conf:ro
-      - ./certs:/etc/nginx/certs  # для HTTPS
+      - ./certs:/etc/nginx/certs
     ports:
       - "80:80"
       - "443:443"
