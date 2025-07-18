@@ -3,7 +3,6 @@ FROM node:16-alpine as build
 WORKDIR /app
 
 
-RUN npm ci
 
 # Копируем весь остальной код и собираем
 COPY . .
