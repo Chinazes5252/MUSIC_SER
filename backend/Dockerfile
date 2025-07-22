@@ -1,8 +1,17 @@
 FROM python:3.11.9-slim
 
-COPY requirements.txt requirements.txt
+# Обновляем pip и устанавливаем Uvicorn с автоперезапуском
+RUN pip install --upgrade pip && pip install "uvicorn[standard]"
+
+# Устанавливаем зависимости
+COPY requirements.txt .
 RUN pip install -r requirements.txt
 
-COPY . .  
+# Копируем весь код
+COPY . .
 
-CMD [ "python", "main.py" ]
+# Указываем порт (если хочешь)
+EXPOSE 8000
+
+# Запускаем FastAPI через Uvicorn
+CMD ["uvicorn", "main:app", "--host", "0.0.0.0", "--port", "8000"]
