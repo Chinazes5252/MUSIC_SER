@@ -11,6 +11,13 @@ services:
     networks:
       - dev
 
+  
+  frontend:
+    build: ./frontend
+    env_file: .env
+    networks:
+      - dev
+  
   nginx:
     build: ./frontend
     ports:
@@ -21,5 +28,6 @@ services:
       - ./certs:/etc/nginx/certs:ro
     depends_on:
       - backend
+      - frontend
     networks:
       - dev
